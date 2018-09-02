@@ -21,12 +21,13 @@ android {
 
 dependencies {
     configuration ->
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    dev(configuration)
+    def jarFiles = fileTree(dir: 'libs', include: ['*.jar'])
+    dev(configuration,jarFiles)
     test(configuration)
 }
 
-private static void dev(configuration){
+private static void dev(configuration,jarFiles){
+    configuration.implementation jarFiles
     configuration.implementation 'com.android.support:appcompat-v7:26.1.0'
     configuration.implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 }
